@@ -33,14 +33,5 @@
     "scripts": {
         "test": "phpunit",
         "lint": "php-cs-fixer fix --config .php-cs-fixer.dist.php src tests"
-    },
-    "extra": {
-        "config-plugin-options": {
-            "source-directory": "config"
-        },
-        "config-plugin": {
-            "common": "common.php",
-            "params":  "params.php"
-        }
     }
 }
