@@ -1,0 +1,46 @@
+{
+    "name": "razonyang/yii-translator-middleware",
+    "description": "Yii translator middleware",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "autoload": {
+        "psr-4": {
+            "RazonYang\\Yii\\TranslatorMiddleware\\": "src/",
+            "RazonYang\\Yii\\TranslatorMiddleware\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "razonyang",
+            "email": "razonyang@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "psr/http-message": "^1.0",
+        "psr/http-server-middleware": "^1.0",
+        "yiisoft/translator": "^1.0",
+        "yiisoft/mutex": "^1.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.11",
+        "phpunit/phpunit": "^9.5",
+        "nyholm/psr7": "^1.5",
+        "yiisoft/mutex-file": "^1.1"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": "php-cs-fixer fix --config .php-cs-fixer.dist.php src tests"
+    },
+    "extra": {
+        "config-plugin-options": {
+            "source-directory": "config"
+        },
+        "config-plugin": {
+            "common": "common.php",
+            "params":  "params.php"
+        }
+    }
+}
