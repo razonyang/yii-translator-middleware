@@ -11,7 +11,7 @@ A HTTP middleware for [Yii Translator](https://github.com/razonyang/yii-translat
 ## How it works?
 
 1. The `TranslatorMiddleware` parse the locale from incoming request and store the translator instance into request.
-1. The subsequent middlewares and handlers can retrieves the translator instance by `TranslatorServiceInterface::get` or `TranslatorServiceInterface::fromAttributes`.
+1. The subsequent middlewares and handlers can retrieves the translator instance by `TranslatorMiddleware::getTranslator` or `TranslatorMiddleware::getTranslatorByAttributes` static methods.
 
 ## Installation
 
@@ -33,25 +33,13 @@ use RazonYang\Yii\TranslatorMiddleware\LocaleParser\HeaderParser;
 use RazonYang\Yii\TranslatorMiddleware\LocaleParser\QueryParamsParser;
 use RazonYang\Yii\TranslatorMiddleware\LocaleParserInterface;
 use RazonYang\Yii\TranslatorMiddleware\TranslatorMiddleware;
-use RazonYang\Yii\TranslatorMiddleware\TranslatorService;
-use RazonYang\Yii\TranslatorMiddleware\TranslatorServiceInterface;
 use Yiisoft\Definitions\Reference;
-use Yiisoft\Mutex\Synchronizer;
 use Yiisoft\Translator\TranslatorInterface;
 
 return [
     TranslatorMiddleware::class => [
         'class' => TranslatorMiddleware::class,
         '__construct()' => [
-            Reference::to(TranslatorServiceInterface::class),
-        ],
-    ],
-
-    TranslatorServiceInterface::class => TranslatorService::class,
-    TranslatorService::class => [
-        'class' => TranslatorService::class,
-        '__construct()' => [
-            Reference::to(Synchronizer::class),
             Reference::to(LocaleParserInterface::class),
             Reference::to(TranslatorInterface::class),
         ],
